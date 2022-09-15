@@ -62,6 +62,8 @@ public class PetstoreTest {
         List<Pet> pet = response.jsonPath().getList("", Pet.class);
         Assert.assertEquals(pet.size(), 1,
                 "Expected size is not as actual");
+
+        //another method
 //        Pet expectedPet = controller.findPet(pet);
 //        Pet actualPet = createdPetResponse.as(Pet.class);
 //        Assert.assertEquals(expectedPet.getId());
