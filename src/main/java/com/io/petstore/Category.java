@@ -1,8 +1,8 @@
 package com.io.petstore;
 
 public class Category {
-    private Integer id = null;
-    private String name = null;
+    private Integer id;
+    private String name;
 
     public Category (Integer id, String name){
         this.id = id;

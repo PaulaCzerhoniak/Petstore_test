@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c1c5d81-8728-4803-92ba-7fb75f61c267" name="Changes" comment="Added 'pending' status">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="9c1c5d81-8728-4803-92ba-7fb75f61c267" name="Changes" comment="Added public Pet updatePet and changes in public void verifyDeletedPet">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/io/petstore/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/io/petstore/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/io/petstore/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/io/petstore/Pet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/io/petstore/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/io/petstore/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/io/petstore/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/io/petstore/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/PetstoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/PetstoreTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +161,21 @@
       <option name="project" value="LOCAL" />
       <updated>1663226537729</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added 'pending' status">
+      <created>1663343601762</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663343601762</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added public Pet updatePet and changes in public void verifyDeletedPet">
+      <created>1663344208146</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663344208146</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,14 +192,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Added 'pending' status" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 'pending' status" />
+    <MESSAGE value="Added public Pet updatePet and changes in public void verifyDeletedPet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added public Pet updatePet and changes in public void verifyDeletedPet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/java/org/example/PetstoreTest.java</url>
-          <line>72</line>
+          <line>73</line>
           <properties class="org.example.PetstoreTest" method="deletePet">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

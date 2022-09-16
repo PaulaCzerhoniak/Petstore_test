@@ -11,11 +11,12 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static org.apache.http.HttpStatus.SC_METHOD_NOT_ALLOWED;
-import static org.apache.http.HttpStatus.SC_UNSUPPORTED_MEDIA_TYPE;
+import static org.apache.http.HttpStatus.SC_OK;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 import static org.testng.Assert.assertEquals;
 
 
@@ -40,12 +41,8 @@ public class PetstoreTest {
     @Test(priority = 0)
     public void addNewPet() {
         RequestSpecification requestSpecification = RestAssured.given();
-
         Pet expectedPet = controller.addNewPet(pet);
-        Response createdPetResponse = requestSpecification.body(expectedPet).expect().statusCode(SC_UNSUPPORTED_MEDIA_TYPE)
-                .when().post("https://petstore.swagger.io/v2/pet");
-        Pet actualPet = createdPetResponse.as(Pet.class);
-        assertEquals(actualPet.getName(), expectedPet.getName(),
+        assertEquals(expectedPet.getName(), pet.getName(),
                 "Expected pet doesn't have correct name");
     }
 
@@ -57,15 +54,25 @@ public class PetstoreTest {
         headers.put("Content-Type", "application/json");
         requestSpecification.headers(headers);
 
-        Response response = requestSpecification.expect().statusCode(SC_METHOD_NOT_ALLOWED)
-                .when().get("https://petstore.swagger.io/v2/pet");
-        List<Pet> pet = response.jsonPath().getList("", Pet.class);
-        Assert.assertEquals(pet.size(), 1,
-                "Expected size is not as actual");
+        Pet petToSearch = controller.addNewPet(pet);
+        Response response = requestSpecification.expect().statusCode(SC_OK)
+                .when().get("https://petstore.swagger.io/v2/pet" + petToSearch.getId());
 
-        //another method
-//        Pet expectedPet = controller.findPet(pet);
-//        Pet actualPet = createdPetResponse.as(Pet.class);
-//        Assert.assertEquals(expectedPet.getId());
+        Pet actualPet = response.as(Pet.class);
+        Assert.assertEquals(actualPet.getId(), petToSearch.getId(),
+                "Expected size is not as actual");
+    }
+
+    @Test(priority = 2)
+    public void updatePet() {
+        pet.setName("New pet name");
+        Pet petResponse = controller.updatePet(pet);
+        assertThat(petResponse, is(samePropertyValuesAs(pet)));
+    }
+
+    @Test(priority = 3)
+    public void deletePet() {
+        controller.deletePet(pet);
+        controller.verifyDeletedPet(pet);
     }
 }
