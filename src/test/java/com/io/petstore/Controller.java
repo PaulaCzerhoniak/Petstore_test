@@ -8,7 +8,6 @@ import io.restassured.specification.RequestSpecification;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.internal.matchers.StringContains.containsString;
 
 public class Controller {
     public static String BASE_URL = "https://petstore.swagger.io/v2";
@@ -33,16 +32,23 @@ public class Controller {
     public List<Pet> getPetsByStatus (Status status){
         return given(requestSpecification)
                 .queryParam("status", Status.available.toString())
+                .contentType(ContentType.JSON)
                 .get(PET_URL + "/findByStatus")
                 .then().log().all()
                 .extract().body()
                 .jsonPath().getList("", Pet.class);
     }
 
-    public Pet findPet(Pet pet){
+    public Pet findPet (Pet pet){
         return given(requestSpecification)
                 .pathParam("petId", pet.getId())
                 .get(PET_URL + "/{petId}").as(Pet.class);
+    }
+
+    public Pet updatePet (Pet pet){
+        return given(requestSpecification)
+                .body(pet)
+                .put(PET_URL).as(Pet.class);
     }
 
     public void deletePet (Pet pet){
@@ -54,8 +60,6 @@ public class Controller {
     public void verifyDeletedPet (Pet pet){
         given(requestSpecification)
                 .pathParam("petId", pet.getId())
-                .get("PET_URL" + "/{petId}")
-                .then()
-                .body(containsString("Pet not found"));
+                .get("PET_URL" + "/{petId}");
     }
 }
